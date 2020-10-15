@@ -1,0 +1,1 @@
+psql -h my-database.cgcwnryxxikq.us-east-1.rds.amazonaws.com -U postgres  -c "\copy gens1_3 (name) FROM '/home/ubuntu/Genome_1_3.txt';"
