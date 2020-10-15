@@ -1,0 +1,31 @@
+select * from gens1;
+drop table gens1;
+create table gens1(
+    name varchar
+);
+select * from gens1;
+drop table gens1;
+create table gens1_3 (
+    names varchar
+);
+create table gens1_5 (
+    names varchar
+);
+create table gens1_9 (
+    names varchar
+);
+create table gens2_3 (
+    names varchar
+);
+create table gens2_5 (
+    names varchar
+);
+create table gens2_9 (
+    names varchar
+);
+select((select count(*) from (select * from gens1_3 intersect all select * from gens2_3) as t1):: float /
+(select count(*) from (select * from gens1_3 union all select * from gens2_3) as t2) :: float) union
+select((select count(*) from (select * from gens1_5 intersect all select * from gens2_5) as t1):: float /
+    (select count(*) from (select * from gens1_5 union all select * from gens2_5) as t2) :: float) union
+select((select count(*) from (select * from gens1_9 intersect all select * from gens2_9) as t1):: float /
+    (select count(*) from (select * from gens1_9 union all select * from gens2_9) as t2) :: float);
