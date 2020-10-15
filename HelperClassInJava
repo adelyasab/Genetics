@@ -1,0 +1,41 @@
+import java.io.*;
+
+public class Main {
+
+    public static void makingNewFile(String fileName, int i) throws IOException {
+        File file = new File(fileName + ".txt");
+        FileWriter fileWriter = new FileWriter(fileName + "_" + i + ".txt");
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+        String str = bufferedReader.readLine();
+        String undStr = "";
+        for (int j = 0; j < i; j++) {
+             undStr += str.charAt(j);
+        }
+
+        while (str != null) {
+
+            for (int j = i; j < str.length(); j++) {
+                fileWriter.write(undStr);
+                fileWriter.append('\n');
+                undStr = undStr.substring(1);
+                undStr += str.charAt(j);
+            }
+
+            i = 0;
+            str = bufferedReader.readLine();
+        }
+        fileWriter.write(undStr);
+        fileWriter.flush();
+    }
+    public static void main(String[] args) throws IOException {
+
+       makingNewFile("Genome_1", 3);
+       makingNewFile("Genome_2", 3);
+       makingNewFile("Genome_1", 5);
+       makingNewFile("Genome_2", 5);
+       makingNewFile("Genome_1", 9);
+       makingNewFile("Genome_2", 9);
+
+
+    }
+}
